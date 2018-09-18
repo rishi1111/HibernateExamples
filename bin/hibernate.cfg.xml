@@ -34,6 +34,10 @@
 		<mapping resource="lti/ex1/product.hbm.xml" />
 		<mapping resource="lti/ex2/customer.hbm.xml" />
 		<mapping resource="lti/ex3/book.hbm.xml" />
+		<mapping resource="lti/ex4/person.hbm.xml" />
+		<mapping resource="lti/ex5/user.hbm.xml" />
+		<mapping resource="lti/ex6/empdept.hbm.xml" />
+		<mapping resource="lti/movieactor/movieactor.hbm.xml" />
 	</session-factory>
 
 </hibernate-configuration>
