@@ -7,8 +7,11 @@ public class Employee {
 	private double salary;
 	private Department dept;
 	
+	public Employee() {
+		
+	}
+	
 	public Employee(int empno, String name, double salary, Department dept) {
-		super();
 		this.empno = empno;
 		this.name = name;
 		this.salary = salary;

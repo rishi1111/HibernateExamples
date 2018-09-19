@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="lti.songs">
+
+	<class name="Song" table="songs">
+		<id name="songId" column="song_id">
+			<generator class="increment" />
+		</id>
+		<property name="songName" column="song_name" />
+		<many-to-one name="artist" column="artist_id" class="Artist"/>
+		<many-to-one name="album" column="album_id" class="Album"/>
+		<many-to-one name="genre" column="genre_id" class="Genre"/> 
+
+	</class>
+
+	<class name="Artist" table="artist">
+		<id name="artistId" column="artist_id">
+			<generator class="increment" />
+		</id>
+		<property name="artistName" column="artist_name" />
+
+		<set name="songs" table="songs" cascade="all">
+			<key column="artist_id" /> <!-- the column in this table, which will act as FK in Songs Table -->
+			<one-to-many class="Song" />
+		</set>
+		<set name="albums" table="album" cascade="all">
+			<key column="artist_id" /> <!-- the column in this table, which will act as FK in album Table -->
+			<one-to-many class="Album" />
+		</set>
+
+
+
+	</class>
+
+	<class name="Album" table="album">
+		<id name="albumId" column="album_id">
+			<generator class="increment" />
+		</id>
+		<property name="albumName" />
+
+		<set name="songs" table="songs" cascade="all">
+			<key column="albumId" /> <!-- the column in this table, which will act as FK in Songs Table -->
+			<one-to-many class="Song" />
+		</set>
+
+
+	</class>
+
+	<class name="Genre" table="genre">
+		<id name="genreId" column="genre_id" type="int">
+			<generator class="increment" />
+		</id>
+
+		<property name="genreName" />
+	</class>
+</hibernate-mapping>

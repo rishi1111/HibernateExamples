@@ -30,10 +30,33 @@ public class DeptEmpTest {
 		SessionFactory factory = HibernateUtil.getFactory();
 		Session session = factory.getCurrentSession();
 		Transaction txn = session.beginTransaction();
-		Department dept=(Department)session.get(Department.class,10);
-		Employee emp = new Employee(1001, "John", 3000.0, dept);
-		session.save(emp);	
+		Department dept = (Department) session.load(Department.class, 10);
+//		Department dept=(Department)session.get(Department.class,10);
+		Employee emp = new Employee(1005, "Thisguy", 3700.0, dept);
+		session.merge(emp);	
 		txn.commit();
 	}
+	
+	@Test
+	public void testCase3() {
+		SessionFactory factory = HibernateUtil.getFactory();
+		Session session = factory.getCurrentSession();
+		Transaction txn = session.beginTransaction();
+		
+		Department dept=(Department)session.get(Department.class,10);
+		System.out.println(dept.getName());
+		
+		
+		
+		for (Employee emp : dept.getEmployees()) {
+			System.out.println(emp.getName());
+		}
+		
+		
+		txn.commit();
+		factory.close();
+	}
+	
+	
 	
 }

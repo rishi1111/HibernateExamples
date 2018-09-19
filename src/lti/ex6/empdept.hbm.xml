@@ -9,8 +9,8 @@
 		<id name="deptno">
 			<generator class="assigned" /> <!--  user gives the value of id , unlike increment -->
 		</id>
-
-		<set name="employees" cascade="save-update,delete" inverse="true">
+<!-- lazy loading , eager loading , and using fetch  -->
+		<set name="employees" cascade="save-update,delete" inverse="true" fetch="join" lazy="false">
 			<key column="deptno" on-delete="cascade" />
 
 			<one-to-many class="Employee" />
